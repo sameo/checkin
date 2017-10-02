@@ -1,22 +1,10 @@
 #!/bin/bash
 
-for i in $(eval echo {1..$1});
-do
-    echo -n "Preparing container #$i..."
-    mkdir bundle-$i
-    cp config.json bundle-$i
-    cd bundle-$i
-    container=container-$i
-    cp -rf ../bundle/rootfs rootfs
-    sed -i 's/runc/'"$container"'/' config.json
-    cd ..
-    echo "Done"
-done
-
-
-for i in $(eval echo {1..$1});
+echo $3
+for i in `ls $2/bundles/`
 do
     container=container-$i
-    curl -i "127.0.0.1:9090/checkin?containerID='"$container"'&event=Starting"
-    sudo runc run -b bundle-$i container-$i &
+    curl -i -s "127.0.0.1:9090/checkin?containerID='"$container"'&event=Starting"
+    echo "Running container-$i"
+    sudo $1 run -b $2/bundles/$i container-$i &
 done

@@ -1,3 +1,7 @@
+instances = ${INSTANCES}
+runtime=${RUNTIME}
+
+root = /tmp/checkin-clear-containers/
 container := $(shell docker create checkin-client)
 
 docker: curl.sh
@@ -5,12 +9,15 @@ docker: curl.sh
 
 bundle: docker config.json
 	rm -rf bundle
-	mkdir -p bundle/rootfs
-	docker export $(container) | tar -C bundle/rootfs -xvf -
+	mkdir -p $(root)/bundle/rootfs
+	docker export $(container) | tar -C $(root)/bundle/rootfs -xvf -
 	cp config.json bundle
 
-run: bundle parallel-run.sh
-	./parallel-run.sh 10
+prepare: bundle prepare-bundles.sh
+	./prepare-bundles.sh $(instances) $(root)
+
+run: parallel-run.sh
+	./parallel-run.sh $(runtime) $(root)
 
 clean:
-	rm -rf bundle bundle-* *~
+	rm -rf bundle $(root) *~
