@@ -1,7 +1,7 @@
 instances = ${INSTANCES}
 runtime=${RUNTIME}
 
-root = /tmp/checkin-clear-containers/
+root = $(PWD)/checkin-clear-containers/
 container := $(shell docker create checkin-client)
 
 docker: curl.sh
