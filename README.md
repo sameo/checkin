@@ -18,7 +18,9 @@ $ make prepare INSTANCES=50
 $ make run RUNTIME=cc-runtime
 ```
 
-## Cleanup
+## Client side cleanup
+
+To clean all client bundles up:
 
 ```
 $ make clean
