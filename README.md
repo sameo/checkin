@@ -7,7 +7,9 @@ Both the server and the client must run on the same host.
 
 ## Server side
 
-`$ make docker-run`
+```
+$ make docker-run
+```
 
 ## Client side
 
@@ -18,5 +20,7 @@ $ make run RUNTIME=cc-runtime
 
 ## Cleanup
 
-`$ make clean`
+```
+$ make clean
+```
 
