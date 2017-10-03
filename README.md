@@ -7,17 +7,24 @@ Both the server and the client must run on the same host.
 
 ## Server side
 
+As root:
+
 ```
 $ cd server
-$ make docker-run
+$ make
+$ ./checkin-server
 ```
 
 ## Client side
 
+As root:
+
 ```
 $ cd client
-$ make prepare INSTANCES=50
-$ make run RUNTIME=cc-runtime
+$ export INSTANCES=50
+$ export RUNTIME=cc-runtime
+$ make prepare
+$ make run
 ```
 
 ### Cleanup
