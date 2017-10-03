@@ -11,7 +11,7 @@ bundle: docker config.json
 	rm -rf bundle
 	mkdir -p $(root)/bundle/rootfs
 	docker export $(container) | tar -C $(root)/bundle/rootfs -xvf -
-	cp config.json bundle
+	cp config.json $(root)/bundle/
 
 prepare: bundle prepare-bundles.sh
 	./prepare-bundles.sh $(instances) $(root)

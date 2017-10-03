@@ -7,7 +7,7 @@
 			"gid": 0
 		},
 		"args": [
-			"/curl.sh", "127.0.0.1"
+			"/rm.sh", "127.0.0.1"
 		],
 		"env": [
 			"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
@@ -55,7 +55,13 @@
 		"readonly": true
 	},
 	"hostname": "runc",
-	"mounts": [
+        "mounts": [
+		{
+		        "destination": "/var/run/checkin-clear-containers/",
+		        "source": "/var/run/checkin-clear-containers/",
+			"type": "bind",
+		        "options": ["bind", "rw"]
+		},
 		{
 			"destination": "/proc",
 			"type": "proc",
