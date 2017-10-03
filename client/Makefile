@@ -2,15 +2,14 @@ instances = ${INSTANCES}
 runtime=${RUNTIME}
 
 root = $(PWD)/checkin-clear-containers/
-container := $(shell docker create checkin-client)
 
-docker: curl.sh
+docker: curl.sh rm.sh
 	docker build -t checkin-client .
 
 bundle: docker config.json
 	rm -rf bundle
 	mkdir -p $(root)/bundle/rootfs
-	docker export $(container) | tar -C $(root)/bundle/rootfs -xvf -
+	docker export $(shell docker create checkin-client) | tar -C $(root)/bundle/rootfs -xvf -
 	cp config.json $(root)/bundle/
 
 prepare: bundle prepare-bundles.sh

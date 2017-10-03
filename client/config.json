@@ -7,7 +7,7 @@
 			"gid": 0
 		},
 		"args": [
-			"/rm.sh", "127.0.0.1"
+			"/rm.sh"
 		],
 		"env": [
 			"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
