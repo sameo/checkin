@@ -19,4 +19,5 @@ run: parallel-run.sh
 	./parallel-run.sh $(runtime) $(root)
 
 clean:
+	./delete.sh $(runtime) $(root)
 	rm -rf bundle $(root) *~
