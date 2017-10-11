@@ -76,6 +76,7 @@ func main() {
 			log.Fatal("ListenAndServe: ", err)
 		}
 	} else {
+		os.RemoveAll(checkinDir)
 		if err := os.MkdirAll(checkinDir, os.ModePerm); err != nil {
 			log.Fatal(err)
 		}
